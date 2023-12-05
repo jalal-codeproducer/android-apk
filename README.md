@@ -1,5 +1,7 @@
 # Continous Delivery Android README
 
+### ❗Link zur Praesentation im txt file im repo ❗
+
 ## Fragen:
 ### Was ist notwendig zur Build-Automatisierung?
 1. Android Build Tools: Die neuesten Versionen der Android Build Tools sollten installiert sein. Die Android Build Tools umfassen wichtige Command-Line-Programme.
