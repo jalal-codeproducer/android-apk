@@ -129,6 +129,9 @@ jobs:
           restore-keys: ${{ runner.os }}-gradle-
       - name: Build Release APK
         run: ./gradlew assembleRelease
+        env:
+          PW: ${{ secrets.PW }}
+          ALIAS: ${{ secrets.ALIAS }}
 
       - name: Sign APK
         uses: r0adkll/sign-android-release@v1
