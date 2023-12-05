@@ -16,11 +16,20 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            storeFile file('keystore.jks') // Update to your keystore file name
+            storePassword project.hasProperty('storePassword') ? project.storePassword : System.getenv('PW')
+            keyAlias project.hasProperty('keyAlias') ? project.keyAlias : System.getenv('ALIAS')
+            keyPassword project.hasProperty('keyPassword') ? project.keyPassword : System.getenv('PW')
+        }
+    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
     compileOptions {
@@ -47,3 +56,13 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+task decodeKeystore {
+    doLast {
+        def encodedKeystore = file('keystore.base64').text.trim()
+        def decodedKeystore = file('decoded_keystore.jks').newOutputStream()
+        decodedKeystore << encodedKeystore.decodeBase64()
+        decodedKeystore.close()
+    }
+}
+
+preBuild.dependsOn decodeKeystore
