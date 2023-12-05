@@ -140,6 +140,9 @@ Dieser key wird im repo als Key eingetragen
 ## Anti-patterns
 - Hartkodieren von Passwörtern/Schlüssel
 - Unversionierte Dependendies
+- Keine Tests bzw. kein Testen
+- Ausschliesslich manuelle Deployments
+- 
 
 ## Vorgehen bei der Aufgabe:
 - Arbeitsaufteilung (Android Präsentationsbeispiel, Secrets, Pipeline, Fragen beantwortung, etc)
