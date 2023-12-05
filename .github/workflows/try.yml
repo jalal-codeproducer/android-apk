@@ -28,6 +28,11 @@ jobs:
       - name: Bundle 'release' with Gradle
         run: ./gradlew bundleRelease
 
+      - name: Debug Network
+        run: |
+          ip route
+          curl -v https://api.sendmail.io/v1/email
+
       # Add the following steps to send an email when the workflow is finished
       - name: Send email on success
         if: success()
