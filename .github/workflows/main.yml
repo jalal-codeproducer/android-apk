@@ -107,6 +107,8 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
+      - name: Write base64-encoded keystore to file
+        run: echo "${{ secrets.SIGNING_KEY }}" > keystore.base64
 
       - name: Set up JDK
         uses: actions/setup-java@v4
