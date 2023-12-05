@@ -81,8 +81,10 @@ jobs:
        # with:
         #  name: unit_test_report
          # path: app/build/reports/androidTests/
-  build:
-    name: Generate App Bundle
+
+
+  dependency-check:
+    name: Check Dependencies
     runs-on: ubuntu-latest
     needs: [unit-test]
     steps:
@@ -92,21 +94,21 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+    - name: Check 'dependency' with Gradle
+      run: ./gradlew dependencyCheckAnalyze --info
+        
+    
+  build:
+    name: Generate App Bundle
+    runs-on: ubuntu-latest
+    needs: [dependency-check]
+    steps:
+    - uses: actions/checkout@v4
+    - name: set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
     - name: Bundle 'release' with Gradle
       run: ./gradlew bundleRelease
-    - name: Sign AAB
-      id: sign_aab
-      uses: r0adkll/sign-android-release@v1
-      with:
-        releaseDirectory: app/build/outputs/bundle/release
-        signingKeyBase64: ${{ secrets.SIGNING_KEYSTORE }}
-        alias: ${{ secrets.SIGNING_ALIAS }}
-        keyStorePassword: ${{ secrets.SIGNING_KEYSTORE_PASSWORD }}
-        keyPassword: ${{ secrets.SIGNING_ALIAS_PASSWORD }}  
-    - run: echo "Build status report=${{ job.status }}."
-    - name: Upload App Bundle
-      uses: actions/upload-artifact@v3
-      with:
-        name: aab
-        path: ${{steps.sign_aab.outputs.signedReleaseFile}}
   
