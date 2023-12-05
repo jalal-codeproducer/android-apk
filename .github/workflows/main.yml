@@ -84,6 +84,7 @@ jobs:
   build:
     name: Generate App Bundle
     runs-on: ubuntu-latest
+    needs: [unit-test]
     steps:
     - uses: actions/checkout@v4
     - name: set up JDK 17
