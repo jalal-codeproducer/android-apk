@@ -27,21 +27,113 @@
 IoC ist ein Entwurfsmuster, bei dem die Kontrolle üer bestimmte Aufgaben von der eigenen Klasse an ein externes Framework übergeben wird. Beispielsweise kann Funktionalität dann durch Dependency Injection in der eigenen Klasse eingefügt werden. Somit wird die Modularität, Testbarkeit und Flexibilität des Codes verbessert. Beispiele für IoC-Frameworks für Android sind Dagger (Dependency Injection Bibliothek von Google, die Annotations verwendet) oder Koin (Dependency Injection Bibliothek, die Kotlin-basiert ist).
 
 ### Welche Schritte in einer CI/CD-Pipeline müssen beachtet werden?
+1. **Quellcode-Verwaltung**
+   - Einsatz von Versionskontrollsystemen wie Git.
+   - Regelmäßiges Einchecken von Code, Ressourcen und Konfigurationen.
 
+2. **Automatisiertes Bauen (Build)**
+   - Verwendung von **Gradle Build-Skripten**.
+   - Sorgfältiges **Abhängigkeitsmanagement**.
+
+3. **Automatisiertes Testen**
+   - Durchführung von **Unit-Tests** mit dem Android JUnit Framework.
+   - Ausführung von **Integrationstests**.
+   - Einsatz von Frameworks wie **Espresso** für UI-Tests.
+
+4. **Continuous Integration**
+   - Automatische Integration von Änderungen in den Hauptentwicklungszweig.
+   - Anwendung von **statischer Codeanalyse** mit Tools wie Lint.
+
+5. **Continuous Delivery (CD)**
+   - **Automatisiertes Deployment** auf Testgeräte oder Emulatoren.
+   - Durchführung von **Alpha/Beta Rollouts** über den Google Play Store.
+
+6. **Release Management**
+   - Automatische **Versionierung und Tagging** des Quellcodes.
+   - **Produktionsrollout** auf den Google Play Store.
+
+7. **Monitoring und Reporting**
+   - Überwachung der **App-Leistung** in der Produktion.
+   - Erfassung von **Nutzungsstatistiken**.
+   - Analyse von **Crash-Berichten**.
+
+8. **Feedback und Optimierung**
+   - Integration von **Nutzerfeedback** in den Entwicklungsprozess.
+   - Stetige **Prozessverbesserungen**.
 ### Wie sieht eine Delivery/Deployment-Strategie aus?
+Das Ziel von continuous delivery ist es durch einen standardisierten automatisierten prozess, zu jeder zeit, code zu haben der gebundled,verteilt und getestet werden kann. Continuous deployment erweitert diese Konzept und zielt darauf ab den code der user base just-in-time zur Verfügung zu stellen. Dies ist im Kontext von Mobile Apps nicht möglich, da diese abhängig von third-party app stores sind. 
+1. **Regelmäßige Bereitstellung von Test-Builds**
+   - Wöchentlich,Täglich oder per-integration
+   - Dogfooding(test-builds an benutzer verteilen die die app kennen, z.B.: Mitarbeiter und wie geplant verwenden )
+2. **Möglichst viel Automatisieren**
+    - Mit z.B.: fastlane
+    - automatisierte builds
+    - automatisiertes signing von binaries
+    - automatisierte tests
+    - automatisiertes deployment zu test usern
+    - automatisiertes build submitting zu Google Play store
+3. **Stabilität und Performance tests**
+    - Stability und Performance tests der Test-User erlauben das festlegen einer baseline ab welcher ein build/release successful ist
+    - Testing checklisten
+    - Feedback in Aktionen umwandeln
+    - Monitoring des releases über Google Play console umd App-Peformance und Nutzerbewertungen zu anaylsieren
+
+4. **Konsistenz**
+    - Inkrementelle builds sollen nahtlos und kontinuierlich in die Hände der Tester kommen. 
+    - Änderungen am CD prozess sind genau abzuwägen da dieser konsistent bleiben sollte um zuverlässig und robust zu sein.
+
 
 ### Was muss eigentlich "ausgeliefert" werden?
+1. **Zweck**
+   - Interne Validierung, Funktionsüberprüfung und Fehlerfindung.
+
+2. **Inhalt**
+   - Debug-Informationen und Log-Daten.
+   - Möglicherweise unvollständige oder experimentelle Features.
+   - Tools für Leistungs- und Fehlerüberwachung.
+
+3. **Versionsmanagement**
+   - Spezielle Versionsnummern oder Tags zur Unterscheidung von Produktionsbuilds.
+   - Häufige Updates, manchmal täglich.
+
+4. **Verteilung**
+   - Über interne Kanäle wie E-Mail, firmeninterne Server oder Dienste wie Firebase App Distribution.
+   
+5. **Sicherheit und Datenschutz**
+   - Schutz sensibler Daten, besonders bei Einbeziehung externer Tester.
+   - Einhaltung interner Datenschutzrichtlinien.
 
 ### Welche Umgebung ist notwendig zum Ausführen bzw. zur Bereistellung des jeweiligen Themas?
+1. **Entwicklungsumgebung**
+   - **Android Studio**: Offizielle IDE für Android-Entwicklung.
 
+2. **Testing und Emulation**
+   - **Android Emulator**: Ein Bestandteil von Android Studio zur Simulation verschiedener Geräte und Android-Versionen.
+   - **Physische Android-Geräte**: Für umfassendere Tests.
+
+3. **Versionskontrolle**
+   - **Git oder Ähnliches**: Zur Verwaltung von Codeänderungen, besonders in Teamumgebungen.
+
+4. **Build-Automatisierung und Continuous Integration**
+   - **Gradle**: Das offizielle Build-Automatisierungssystem für Android.
+   - **CI/CD-Tools**: Wie Jenkins, CircleCI oder Travis CI zur Automatisierung von Builds und Tests.
+
+5. **Play Store Veröffentlichung**
+   - **Google Play Console**: Für die Veröffentlichung und Verwaltung von Apps im Google Play Store.
+
+6. **Backend-Services (falls benötigt)**
+   - **Server**: Für Funktionen wie Datenbankmanagement, Authentifizierung und Push-Benachrichtigungen.
+   - **Cloud-Dienste**: Wie Firebase oder AWS für verschiedene Backend-Funktionen.
+
+7. **Sicherheit und Compliance**
+   - **SSL-Zertifikate**: Für sichere Datenübertragungen.
+   - **Datenschutzrichtlinien und Compliance-Tools**: Zur Einhaltung von Datenschutzgesetzen.
+     
 ## Secrets
 GitHub Actions ermöglicht die Nutzung von Secrets, also variablen Werten, in Organisationen, Repositories und Umgebungen. Diese Geheimnisse können in Workflows eingebunden werden, wo der Zugriff durch spezifizierte Richtlinien kontrolliert wird. Praktisch ist die Möglichkeit, uaf Organisationsebene-Geheimnisse zu teilen und so Duplikate zu vermeiden.
 
 Folgender Command ist verwendet worden für das generieren vom Key:
-
-´´´ 
 openssl base64 < some_signing_key.jks | tr -d '\n' | tee some_signing_key.jks.base64.txt
-´´´
 
 Dieser key wird im repo als Key eingetragen
 
