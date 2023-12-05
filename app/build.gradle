@@ -19,9 +19,9 @@ android {
     signingConfigs {
         release {
             storeFile file('keystore.jks') // Update to your keystore file name
-            storePassword ${{ secrets.PW }}
-            keyAlias ${{ secrets.ALIAS }}
-            keyPassword ${{ secrets.PW }}
+            storePassword System.getenv('PW')
+            keyAlias System.getenv('ALIAS')
+            keyPassword System.getenv('PW')
         }
     }
 
