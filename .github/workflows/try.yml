@@ -28,18 +28,15 @@ jobs:
       - name: Bundle 'release' with Gradle
         run: ./gradlew bundleRelease
 
-      - name: Debug Network
-        run: |
-          echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf
-          cat /etc/resolv.conf
-          curl -v https://api.sendmail.io/v1/email
+      - name: Use Google DNS
+        run: echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf
 
       # Add the following steps to send an email when the workflow is finished
       - name: Send email on success
         if: success()
         run: |
           curl \
-            --url 'https://api.sendmail.io/v1/email' \
+            --url 'https://91.229.57.240/v1/email' \
             --header 'Content-Type: application/json' \
             --data-raw '{
               "to": "${{ github.actor }}@users.noreply.github.com",
@@ -51,7 +48,7 @@ jobs:
         if: failure()
         run: |
           curl \
-            --url 'https://api.sendmail.io/v1/email' \
+            --url 'https://91.229.57.240/v1/email' \
             --header 'Content-Type: application/json' \
             --data-raw '{
               "to": "${{ github.actor }}@users.noreply.github.com",
