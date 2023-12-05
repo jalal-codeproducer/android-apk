@@ -38,9 +38,11 @@ IoC ist ein Entwurfsmuster, bei dem die Kontrolle üer bestimmte Aufgaben von de
 GitHub Actions ermöglicht die Nutzung von Secrets, also variablen Werten, in Organisationen, Repositories und Umgebungen. Diese Geheimnisse können in Workflows eingebunden werden, wo der Zugriff durch spezifizierte Richtlinien kontrolliert wird. Praktisch ist die Möglichkeit, uaf Organisationsebene-Geheimnisse zu teilen und so Duplikate zu vermeiden.
 
 Folgender Command ist verwendet worden für das generieren vom Key:
+
 ´´´java
 openssl base64 < some_signing_key.jks | tr -d '\n' | tee some_signing_key.jks.base64.txt
 ´´´
+
 Dieser key wird im repo als Key eingetragen
 
 ## Anti-patterns
