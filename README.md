@@ -39,7 +39,7 @@ GitHub Actions ermöglicht die Nutzung von Secrets, also variablen Werten, in Or
 
 Folgender Command ist verwendet worden für das generieren vom Key:
 
-´´´
+´´´ 
 openssl base64 < some_signing_key.jks | tr -d '\n' | tee some_signing_key.jks.base64.txt
 ´´´
 
