@@ -1,11 +1,8 @@
 name: CI Test
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:
   
-  #push:
-  #  branches: [main]
-
   pull_request:
     branches: [main]
 
@@ -98,7 +95,19 @@ jobs:
       # Add the following steps to send an email when the workflow is finished
       - name: Send email on success
         if: success()
-        run: echo 'Email content' | mail -s 'CI/CD Pipeline Finished' benjamin.lamprecht1@edu.fh-joanneum.at
+        run: |
+          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
+            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
+            -F from='CI/CD Pipeline <mailgun@yourdomain.com>' \
+            -F to='benjamin.lamprecht1@edu.fh-joanneum.at' \
+            -F subject='CI/CD Pipeline Finished' \
+            -F text='Email content'
       - name: Send email on failure
         if: failure()
-        run: echo 'Email content' | mail -s 'CI/CD Pipeline Failed' benjamin.lamprecht1@edu.fh-joanneum.at
+        run: |
+          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
+            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
+            -F from='CI/CD Pipeline <mailgun@yourdomain.com>' \
+            -F to='benjamin.lamprecht1@edu.fh-joanneum.at' \
+            -F subject='CI/CD Pipeline Failed' \
+            -F text='Email content'
