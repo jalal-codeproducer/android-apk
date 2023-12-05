@@ -169,10 +169,10 @@ Dieser key wird im repo als Key eingetragen
 - Ausschliesslich manuelle Deployments
 
 ## Actions:
-- checkout@v4
-- cache@v3
-- setup-java@v4
-- upload-artifact@v3
+- checkout@v4: This action checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+- cache@v3: This action allows caching dependencies and build outputs to improve workflow execution time.
+- setup-java@v4: This action allows you to work with Java and Scala projects
+- upload-artifact@v3: This uploads artifacts from your workflow allowing you to share data between jobs and store data once a workflow is complete.
 
 ## Vorgehen bei der Aufgabe:
 - Arbeitsaufteilung (Android Präsentationsbeispiel, Secrets, Pipeline, Fragen beantwortung, etc)
