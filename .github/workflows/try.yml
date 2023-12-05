@@ -32,18 +32,14 @@ jobs:
       - name: Send email on success
         if: success()
         run: |
-          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
-            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
-            -F from='CI/CD Pipeline <mailgun@yourdomain.com>' \
+            -F from='CI/CD Pipeline <benjamin.lamprecht1@edu.fh-joanneum.at>' \
             -F to='benjamin.lamprecht1@edu.fh-joanneum.at' \
             -F subject='CI/CD Pipeline Finished' \
             -F text='Email content'
       - name: Send email on failure
         if: failure()
         run: |
-          curl -s --user "api:${{ secrets.MAILGUN_API_KEY }}" \
-            https://api.mailgun.net/v3/${{ secrets.MAILGUN_DOMAIN }}/messages \
-            -F from='CI/CD Pipeline <mailgun@yourdomain.com>' \
+            -F from='CI/CD Pipeline <benjamin.lamprecht1@edu.fh-joanneum.at>' \
             -F to='benjamin.lamprecht1@edu.fh-joanneum.at' \
             -F subject='CI/CD Pipeline Failed' \
             -F text='Email content'
