@@ -167,7 +167,12 @@ Dieser key wird im repo als Key eingetragen
 - Unversionierte Dependendies
 - Keine Tests bzw. kein Testen
 - Ausschliesslich manuelle Deployments
-- 
+
+## Actions:
+- checkout@v4
+- cache@v3
+- setup-java@v4
+- upload-artifact@v3
 
 ## Vorgehen bei der Aufgabe:
 - Arbeitsaufteilung (Android Präsentationsbeispiel, Secrets, Pipeline, Fragen beantwortung, etc)
