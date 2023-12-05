@@ -30,7 +30,6 @@ jobs:
 
   conclude:
     runs-on: ubuntu-latest
-    needs: e2e-all-os
     if: always()
     permissions:
       actions: read
