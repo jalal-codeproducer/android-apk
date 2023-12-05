@@ -84,6 +84,8 @@ Das Ziel von continuous delivery ist es durch einen standardisierten automatisie
 
 
 ### Was muss eigentlich "ausgeliefert" werden?
+#### Testbuilds für Mitarbeiter
+
 1. **Zweck**
    - Interne Validierung, Funktionsüberprüfung und Fehlerfindung.
 
@@ -103,7 +105,30 @@ Das Ziel von continuous delivery ist es durch einen standardisierten automatisie
    - Schutz sensibler Daten, besonders bei Einbeziehung externer Tester.
    - Einhaltung interner Datenschutzrichtlinien.
 
+#### "Echte" Releases im Play Store
+
+1. **Zweck**
+   - Für das Endpublikum bestimmt, stabil und voll funktionsfähig.
+
+2. **Inhalt**
+   - Vollständige, getestete und optimierte Features.
+   - Entfernung von Entwicklungs-spezifischen Debug-Informationen.
+   - Erforderliche Sicherheits- und Datenschutzmaßnahmen.
+
+3. **Versionsmanagement**
+   - Eindeutige Versionsnummern und -tags, entsprechend den Standards des Play Stores.
+   - Updates nach festgelegtem Release-Zeitplan.
+
+4. **Verteilung**
+   - Veröffentlichung über den Google Play Store.
+   - Optionaler phasenweiser Rollout.
+
+5. **Sicherheit und Datenschutz**
+   - Strenge Einhaltung der Sicherheits- und Datenschutzrichtlinien des Play Stores.
+   - Regelmäßige Sicherheitsüberprüfungen und Updates zur Compliance.
+
 ### Welche Umgebung ist notwendig zum Ausführen bzw. zur Bereistellung des jeweiligen Themas?
+
 1. **Entwicklungsumgebung**
    - **Android Studio**: Offizielle IDE für Android-Entwicklung.
 
