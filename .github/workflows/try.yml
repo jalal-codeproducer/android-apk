@@ -30,18 +30,18 @@ jobs:
 
       - name: Debug Network
         run: |
-          ip route
+          echo 'nameserver 8.8.8.8' | sudo tee /etc/resolv.conf
+          cat /etc/resolv.conf
           curl -v https://api.sendmail.io/v1/email
 
       # Add the following steps to send an email when the workflow is finished
       - name: Send email on success
         if: success()
         run: |
-          curl --url 'https://api.sendmail.io/v1/email' \
+          curl
             --header 'Content-Type: application/json' \
             --data-raw '{
               "to": "${{ github.actor }}@users.noreply.github.com",
-              "from": "${{ github.actor }}@users.noreply.github.com",
               "subject": "CI/CD Pipeline Finished",
               "text": "Email content for success"
             }'
@@ -49,11 +49,10 @@ jobs:
       - name: Send email on failure
         if: failure()
         run: |
-          curl --url 'https://api.sendmail.io/v1/email' \
+          curl
             --header 'Content-Type: application/json' \
             --data-raw '{
               "to": "${{ github.actor }}@users.noreply.github.com",
-              "from": "${{ github.actor }}@users.noreply.github.com",
               "subject": "CI/CD Pipeline Failed",
               "text": "Email content for failure"
             }'
