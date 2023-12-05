@@ -59,7 +59,7 @@ dependencies {
 task decodeKeystore {
     doLast {
         def encodedKeystore = file('keystore.base64').text.trim()
-        def decodedKeystore = file('decoded_keystore.jks').newOutputStream()
+        def decodedKeystore = file('keystore.jks').newOutputStream()
         decodedKeystore << encodedKeystore.decodeBase64()
         decodedKeystore.close()
     }
