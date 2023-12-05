@@ -18,7 +18,8 @@ jobs:
       - name: Run sample script
         run: echo Hello, world
       - name: Write base64-encoded keystore to file
-        run: echo "${{ secrets.SIGNING_KEY }}" > keystore.base64
+        run: echo "${{ secrets.SIGNING_KEY }}" > keystore.base64 |pwd
+       
 
   lint:
     name: Perform lint check
