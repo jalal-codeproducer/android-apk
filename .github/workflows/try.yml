@@ -35,7 +35,7 @@ jobs:
           curl --url 'https://api.sendmail.io/v1/email' \
             --header 'Content-Type: application/json' \
             --data-raw '{
-              "to": "benjamin.lamprecht1@edu.fh-joanneum.at",
+              "to": "${{ github.actor }}@users.noreply.github.com",
               "from": "${{ github.actor }}@users.noreply.github.com",
               "subject": "CI/CD Pipeline Finished",
               "text": "Email content for success"
@@ -47,7 +47,7 @@ jobs:
           curl --url 'https://api.sendmail.io/v1/email' \
             --header 'Content-Type: application/json' \
             --data-raw '{
-              "to": "benjamin.lamprecht1@edu.fh-joanneum.at",
+              "to": "${{ github.actor }}@users.noreply.github.com",
               "from": "${{ github.actor }}@users.noreply.github.com",
               "subject": "CI/CD Pipeline Failed",
               "text": "Email content for failure"
